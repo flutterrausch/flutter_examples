@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fixed_header_scroll/listviewbuilder_screen.dart';
 
 const title = 'Fixed Header Scroll';
 
@@ -24,7 +25,7 @@ class MainScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            PageButton('Example', MainScreen(), context),
+            PageButton('ListViewBuilder', ListViewBuilderScreen(), context),
           ],
         ),
       ),
