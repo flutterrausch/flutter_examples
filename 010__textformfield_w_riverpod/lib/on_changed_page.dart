@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:textformfield_w_riverpod/main_screen.dart';
+import 'package:textformfield_w_riverpod/main.dart';
 
 class OnChangedPage extends StatelessWidget {
 

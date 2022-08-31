@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:textformfield_w_riverpod/main_screen.dart';
+import 'package:textformfield_w_riverpod/main.dart';
 
 final textFormFieldProvider = StateProvider((ref) => '');
 

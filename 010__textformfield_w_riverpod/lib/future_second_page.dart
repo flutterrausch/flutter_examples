@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:textformfield_w_riverpod/future_two_pages.dart';  // for apiFutureProvider
-import 'main_screen.dart';
+import 'main.dart';
 
 class FutureSecondPage extends ConsumerWidget {
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:textformfield_w_riverpod/main_screen.dart';
+import 'package:textformfield_w_riverpod/main.dart';
 
 const seconds = 2;
 Future<int> readApiValue() async {
