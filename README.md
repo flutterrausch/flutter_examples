@@ -1,5 +1,7 @@
-# A bunch of (hopefully) useful flutter examples
+# Some (hopefully) useful flutter examples
 
-Each subdirectory is a flutter project for a specific subject. Check pubspec.lock for the flutter version it was tested with. You may want to further fixate the plugin versions in pubspec.yaml
+Each subdirectory is a flutter project for a specific subject.
 
-Comments welcome (bug tracker..).
+Check pubspec.lock for the flutter version it was tested with. You may want to further fixate the plugin versions in pubspec.yaml
+
+Comments welcome (issue tracker at the moment).
