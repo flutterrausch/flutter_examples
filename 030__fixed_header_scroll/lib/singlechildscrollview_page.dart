@@ -11,13 +11,14 @@ class SingleChildScrollViewPage extends StatelessWidget {
         body:
         Column(
             children: [
-              /// fixed element
+
+              /// fixed header
               Container(
                 color: Colors.amber,
                 child: const ListTile(leading: Text('#'), title: Text('Header'), trailing: Text('#'),),
               ),
 
-              /// all the following elements
+              /// content
               Expanded(  // make it scrollable
                 child: SingleChildScrollView(
                   child: Column(

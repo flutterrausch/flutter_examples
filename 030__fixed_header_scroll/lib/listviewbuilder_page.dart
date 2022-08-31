@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class ListViewBuilderScreen extends StatelessWidget {
+class ListViewBuilderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class ListViewBuilderScreen extends StatelessWidget {
 
             /// https://www.kindacode.com/article/flutter-adding-a-header-to-a-listview
 
-            /// fixed element
+            /// fixed header
             Container(
               padding: const EdgeInsets.all(10),
               color: Colors.amber,
               child: const ListTile(leading: Text('ID'), title: Text('Name'), trailing: Text('Age'),),
             ),
 
-            /// all the following elements
+            /// content (ListItems)
             Expanded(
               child: ListView.builder(
                   itemCount: _peopleData.length,
