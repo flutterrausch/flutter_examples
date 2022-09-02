@@ -51,7 +51,7 @@ class FutureOnePage extends ConsumerWidget {
 
             const SizedBox(height: 50,),
             ElevatedButton(
-              child: Text('Fertig'),
+              child: Text('Done'),
               onPressed: () {
                 writeApiValue(txtEditCtrl.text);  // pop thru BackButton gets ignored (cancel value changes)
                 Navigator.pop(context, txtEditCtrl.text);

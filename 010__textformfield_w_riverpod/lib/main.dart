@@ -5,6 +5,7 @@ import 'package:textformfield_w_riverpod/controller_page.dart';
 import 'package:textformfield_w_riverpod/state_provider_page.dart';
 import 'package:textformfield_w_riverpod/form_state_provider_page.dart';
 import 'package:textformfield_w_riverpod/future_one_page.dart';
+import 'package:textformfield_w_riverpod/willpopscope_page.dart';
 //import 'package:textformfield_w_riverpod/future_two_pages.dart';
 
 void main() => runApp(ProviderScope(child: MyApp()));
@@ -52,6 +53,7 @@ class _MainScreenState extends State<MainScreen> {
               PageButton('TextEditingController', ControllerPage(), context),
               PageButton('StateProvider', StateProviderPage(), context),
               PageButton('Form StateProvider', FormStateProviderPage(), context),
+
               ElevatedButton(
                 child: Text('Future 1p push, back=cancel'),
                 onPressed: () {
@@ -63,6 +65,8 @@ class _MainScreenState extends State<MainScreen> {
                   );
                 },
               ),
+
+              PageButton('WillPopScope', WillPopScopePage(), context),
 
               //PageButton('Future 2p', FutureTwoPages(), context),
             ],
