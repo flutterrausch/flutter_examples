@@ -53,8 +53,8 @@ class FutureOnePage extends ConsumerWidget {
             ElevatedButton(
               child: Text('Done'),
               onPressed: () {
-                writeApiValue(txtEditCtrl.text);  // pop thru BackButton gets ignored (cancel value changes)
-                Navigator.pop(context, txtEditCtrl.text);
+                writeApiValue(txtEditCtrl.text);  // pop thru BackButton is not caught - cancels value changes
+                Navigator.pop(context, txtEditCtrl.text);  // return data to MainScreen (which pushed to here)
               },
             )
 

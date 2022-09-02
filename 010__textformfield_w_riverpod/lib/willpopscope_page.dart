@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:textformfield_w_riverpod/main.dart';
 
 class WillPopScopePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {  // callback for pressing BackButton
+    return WillPopScope(  // span whole page
+      onWillPop: () async {  // callback for pressed BackButton
         print('BackButton pressed');
         return false;  // pop/or not  =  enabled/disabled Backbutton  (necessary, non-null)
       },
@@ -18,12 +17,12 @@ class WillPopScopePage extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 150,),
-              Text('WillPopScope - try Backbutton and Button'),
-              //Description(),
+              const Text('WillPopScope - try Backbutton and Button'),
+              const Text('+ check log'),
 
               const SizedBox(height: 50,),
               ElevatedButton(
-                child: Text('Done'),
+                child: const Text('Done'),
                 onPressed: () {
                   print('Button pressed');
                   Navigator.pop(context, 'some value');

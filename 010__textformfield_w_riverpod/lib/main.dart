@@ -58,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
                 child: Text('Future 1p push, back=cancel'),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => FutureOnePage()),)
-                    .then((valFromPage) {
+                    .then((valFromPage) {  // receive data from subpage
                       print('completion = $valFromPage');
                       return Text('hallo');
                     }
@@ -66,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
 
-              PageButton('WillPopScope', WillPopScopePage(), context),
+              PageButton('WillPopScope disable Backbutton', WillPopScopePage(), context),
 
               //PageButton('Future 2p', FutureTwoPages(), context),
             ],
