@@ -11,21 +11,21 @@ class WillPopScopePage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('WillPopScope'),
+          title: const Text('Backbutton disabled'),
         ),
         body: Center(
           child: Column(
             children: [
               const SizedBox(height: 150,),
-              const Text('WillPopScope - try Backbutton and Button'),
+              const Text('Try Backbutton and Button'),
               const Text('+ check log'),
 
               const SizedBox(height: 50,),
               ElevatedButton(
                 child: const Text('Done'),
                 onPressed: () {
-                  print('Button pressed');
-                  Navigator.pop(context, 'some value');
+                  print('Done pressed');
+                  Navigator.pop(context);
                 },
               )
 
