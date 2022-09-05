@@ -7,7 +7,8 @@ import 'package:textformfield_w_riverpod/form_state_provider_page.dart';
 import 'package:textformfield_w_riverpod/future_one_page.dart';
 import 'package:textformfield_w_riverpod/willpopscope_page.dart';
 import 'package:textformfield_w_riverpod/willpopscope_alert_page.dart';
-//import 'package:textformfield_w_riverpod/third_screen.dart';
+import 'package:textformfield_w_riverpod/willpopscope_riverpod_page.dart';
+import 'package:textformfield_w_riverpod/backbutton_setstate.dart';
 //import 'package:textformfield_w_riverpod/future_two_pages.dart';
 
 void main() => runApp(ProviderScope(child: MyApp()));
@@ -70,7 +71,8 @@ class _MainScreenState extends State<MainScreen> {
 
               PageButton('Backbutton disabled', WillPopScopePage(), context),
               PageButton('Backbutton alert', WillPopScopeAlertPage(), context),
-              //PageButton('3rd screen', ThirdScreen(), context),
+              PageButton('Backbutton setState', BackbuttonSetstate(), context),
+              PageButton('Backbutton riverpod', WillPopScopeRiverpodPage(), context),
 
               //PageButton('Future 2p', FutureTwoPages(), context),
             ],
