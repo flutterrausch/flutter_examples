@@ -6,7 +6,7 @@ class WillPopScopePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(  // span whole page
       onWillPop: () async {  // callback for pressed BackButton
-        print('BackButton pressed');
+        debugPrint('BackButton pressed');
         return false;  // pop/or not  =  enabled/disabled Backbutton  (necessary, non-null)
       },
       child: Scaffold(
@@ -24,7 +24,7 @@ class WillPopScopePage extends StatelessWidget {
               ElevatedButton(
                 child: const Text('Done'),
                 onPressed: () {
-                  print('Done pressed');
+                  debugPrint('Done pressed');
                   Navigator.pop(context);
                 },
               )

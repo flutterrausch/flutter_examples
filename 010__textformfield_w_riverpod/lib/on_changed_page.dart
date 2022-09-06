@@ -14,7 +14,7 @@ class OnChangedPage extends StatelessWidget {
           children: [
             TextField(
               onChanged: (nameProvider) {
-                print('TextField: $nameProvider');
+                debugPrint('TextField: $nameProvider');
               },
             ),
             Description(),

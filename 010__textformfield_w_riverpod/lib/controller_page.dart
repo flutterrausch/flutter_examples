@@ -28,7 +28,7 @@ class ControllerPage extends StatelessWidget {
             ElevatedButton(
               child: Text('Press me'),
               onPressed: () {
-                print('textfield = ' + myController.text);  // read value of TextEditingController
+                debugPrint('textfield = ' + myController.text);  // read value of TextEditingController
               },
             )
 

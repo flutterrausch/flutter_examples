@@ -8,9 +8,9 @@ Future<int> readApiValue() async {
   return 42;
 }
 void writeApiValue(val) async {
-  print('API writing $val for $seconds sec..');
+  debugPrint('API writing $val for $seconds sec..');
   await Future.delayed(Duration(seconds: seconds));
-  print('..done');
+  debugPrint('..done');
   return;
 }
 final apiFutureProvider = FutureProvider.autoDispose<int>((ref) => readApiValue());  // autoDispose = restart on each visit
