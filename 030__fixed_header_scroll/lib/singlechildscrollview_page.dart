@@ -9,7 +9,7 @@ class SingleChildScrollViewPage extends StatelessWidget {
           title: const Text('SingleChildScrollView'),
         ),
         body:
-        Column(
+          Column(
             children: [
 
               /// fixed header
@@ -22,7 +22,7 @@ class SingleChildScrollViewPage extends StatelessWidget {
               Expanded(  // make it scrollable
                 child: SingleChildScrollView(
                   child: Column(
-                    children: <Widget>[
+                    children: [
 
                       // any widget, not just ListTiles (ListViewBuilder)
                       const ListTile(leading: Text('ID'), title: Text('Name'), trailing: Text('Age'),),
