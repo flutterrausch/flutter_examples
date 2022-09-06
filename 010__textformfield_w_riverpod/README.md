@@ -13,4 +13,4 @@
 ### Bringing it all together for a Details Screen:
 - Details with setState (custom AlertDialog)
 - Riverpod ConsumerStateful basics
-- Details with Riverpod
+- Details with Riverpod - persistent prefilled TextField, Backbutton-Alert on changed value
