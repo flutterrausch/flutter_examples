@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
-final helloWorldProvider = Provider((_) => 'Hello world');
+final helloWorldProvider = Provider((ref) => 'Hello world');
 
 class ConsumerStatefulPage extends ConsumerStatefulWidget {
   @override
@@ -15,8 +15,8 @@ class _ConsumerStatefulPageState extends ConsumerState {
   void initState() {
     super.initState();
 
-    final value1 = ref.read(helloWorldProvider);  // Hello world
-    debugPrint('value1 = $value1');
+    final String value1 = ref.read(helloWorldProvider);  // why is ref.read(helloWorldProvider.state).state not working here?
+    debugPrint('value1 = $value1');  // Hello world
   }
 
   @override

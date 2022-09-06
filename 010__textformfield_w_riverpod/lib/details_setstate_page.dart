@@ -40,7 +40,9 @@ class _DetailsSetstatePageState extends State<DetailsSetstatePage> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text('Details setState'),
+        ),
         body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(

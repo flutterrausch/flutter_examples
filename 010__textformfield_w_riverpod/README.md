@@ -9,8 +9,8 @@
 - Future with 1 page push (Backbutton = cancel)
 ### Controlling Backbutton using WillPopScope:
 - Backbutton disabled
-- Backbutton -> Alert Dialog (re-usable widget)
+- Backbutton with AlertDialog (re-usable widget)
 ### Bringing it all together for a Details Screen:
-- Details with setState (custom Alert)
+- Details with setState (custom AlertDialog)
 - Riverpod ConsumerStateful basics
 - Details with Riverpod

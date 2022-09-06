@@ -8,7 +8,6 @@ class DetailsRiverpodPage extends ConsumerStatefulWidget {
 
   @override
   _DetailsRiverpodPageState createState() => _DetailsRiverpodPageState();
-  //ConsumerState<DetailsRiverpodPage> createState() => _DetailsRiverpodPageState();
 }
 
 class _DetailsRiverpodPageState extends ConsumerState {
@@ -17,40 +16,48 @@ class _DetailsRiverpodPageState extends ConsumerState {
   @override
   void initState() {
     super.initState();
-    //final value = ref.read(savedText);
-    //_controller.text = ref.read(savedText.state).state;  // TODO init   _controller.text = ref.read(savedText.state).state  https://stackoverflow.com/a/64218048
+
+    // final String value1 = ref.read(savedText);  // why is this a string?
+    // debugPrint('value1 = $value1');
+    // _controller.text = value1;
+    //
+    // final String value2 = ref.read(savedText.state).state;
+    // debugPrint('value2 = $value2');
+    // _controller.text = value2;
+
+    _controller.text = ref.read(savedText);  // same as  ref.read(savedText.state).state
   }
 
   @override
-  // Widget build(BuildContext context, WidgetRef ref) {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (_controller.text == ref.read(savedText.state).state) {  // no change = no data can be lost
-          return true;
+        if (_controller.text == ref.read(savedText.state).state) {
+          return true;  // no change = no data can be lost, pop
         } else {
           return BackButtonDialog(context);
         }
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Backbutton riverpod'),
+          title: const Text('Details riverpod'),
         ),
         body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               Consumer(
                 builder: (context, ref, _) {
-                  return Text('Saved text: ' + ref.watch(savedText.state).state);
+                  return Text('Saved text: ' + ref.watch(savedText));  // same as  ref.watch(savedText.state).state)
                 }
               ),
-              const SizedBox(height: 16),
 
+              const SizedBox(height: 16),
               TextField(controller: _controller),
-              const SizedBox(height: 16),
 
+              const SizedBox(height: 16),
               ElevatedButton(
                 child: const Text("Save"),
                 onPressed: () {
