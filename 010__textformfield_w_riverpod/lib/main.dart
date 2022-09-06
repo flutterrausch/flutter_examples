@@ -49,36 +49,53 @@ class _MainScreenState extends State<MainScreen> {
         appBar: AppBar(
           title: const Text('Textfields w Riverpod'),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              PageButton('OnChanged', OnChangedPage(), context),
-              PageButton('TextEditingController', ControllerPage(), context),
-              const SizedBox(height: 16),
-              PageButton('StateProvider', StateProviderPage(), context),
-              PageButton('Form StateProvider', FormStateProviderPage(), context),
-              ElevatedButton(
-                child: Text('Future 1p push, back=cancel'),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => FutureOnePage()),)
-                    .then((valFromPage) {  // receive data from subpage
-                      print('completion = $valFromPage');
-                      return Text('hallo');
-                    }
-                  );
-                },
+        body: Column(
+          children: [
+            Expanded(  // make it scrollable
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+
+                      const Text('Textfield basics:'),
+                      PageButton('OnChanged', OnChangedPage(), context),
+                      PageButton('TextEditingController', ControllerPage(), context),
+                      const SizedBox(height: 20),
+
+                      const Text('Riverpod:'),
+                      PageButton('StateProvider', StateProviderPage(), context),
+                      PageButton('Form StateProvider', FormStateProviderPage(), context),
+                      ElevatedButton(
+                        child: const Text('Future 1p push, back=cancel'),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => FutureOnePage()),)
+                            .then((valFromPage) {  // receive data from subpage
+                              debugPrint('completion = $valFromPage');
+                              return const Text('hallo');
+                            }
+                          );
+                        },
+                      ),
+                      //PageButton('Future 2p', FutureTwoPages(), context),
+                      const SizedBox(height: 20),
+
+                      const Text('Backbutton using WillPopScope:'),
+                      PageButton('Backbutton disabled', WillPopScopePage(), context),
+                      PageButton('Backbutton alert', WillPopScopeAlertPage(), context),
+                      const SizedBox(height: 20),
+
+                      const Text('∑ DetailsScreen:'),
+                      PageButton('Backbutton setState', const BackbuttonSetstate(), context),
+                      PageButton('Backbutton riverpod', WillPopScopeRiverpodPage(), context),
+                      PageButton('Backbutton riverpod', WillPopScopeRiverpodPage(), context),
+
+                    ],
+                  ),
+                ),
               ),
-              const SizedBox(height: 16),
-
-              PageButton('Backbutton disabled', WillPopScopePage(), context),
-              PageButton('Backbutton alert', WillPopScopeAlertPage(), context),
-              PageButton('Backbutton setState', BackbuttonSetstate(), context),
-              PageButton('Backbutton riverpod', WillPopScopeRiverpodPage(), context),
-
-              //PageButton('Future 2p', FutureTwoPages(), context),
-            ],
-          ),
-        ),
+            ),
+          ],
+        )
     );
   }
 }
@@ -88,7 +105,7 @@ class PageButton extends StatelessWidget {
   final Widget page;
   final BuildContext context;
 
-  PageButton(this.pageName, this.page, this.context);
+  const PageButton(this.pageName, this.page, this.context);
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +120,6 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('See debug log, and test returning to this page');
+    return const Text('See debug log, and test returning to this page');
   }
 }
