@@ -87,7 +87,7 @@ class _MainScreenState extends State<MainScreen> {
 
                       const Text('∑ DetailsScreen:'),
                       PageButton('Details setState', const DetailsSetstatePage(), context),
-                      PageButton('Riverpod ConsumerStateful basics', ConsumerStatefulPage(), context),
+                      PageButton('ConsumerStateful basics', ConsumerStatefulPage(), context),
                       PageButton('Details riverpod', DetailsRiverpodPage(), context),
 
                     ],

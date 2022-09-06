@@ -12,5 +12,5 @@
 - Backbutton -> Alert Dialog (re-usable widget)
 ### Bringing it all together for a Details Screen:
 - Details with setState (custom Alert)
-- Riverpod ConsumerStateful basiscs
+- Riverpod ConsumerStateful basics
 - Details with Riverpod

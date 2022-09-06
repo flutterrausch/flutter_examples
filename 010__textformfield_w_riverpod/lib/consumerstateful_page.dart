@@ -25,7 +25,7 @@ class _ConsumerStatefulPageState extends ConsumerState {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Riverpod ConsumerStateful basics'),
+        title: const Text('ConsumerStateful basics'),
       ),
       body: Text(value2),  // Hello world
     );
