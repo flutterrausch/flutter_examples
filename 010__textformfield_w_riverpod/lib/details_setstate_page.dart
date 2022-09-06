@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class BackbuttonSetstate extends StatefulWidget {
-  const BackbuttonSetstate({Key? key}) : super(key: key);
+class DetailsSetstatePage extends StatefulWidget {
+  const DetailsSetstatePage({Key? key}) : super(key: key);
 
   @override
-  _BackbuttonSetstateState createState() => _BackbuttonSetstateState();
+  _DetailsSetstatePageState createState() => _DetailsSetstatePageState();
 }
 
-class _BackbuttonSetstateState extends State<BackbuttonSetstate> {
+class _DetailsSetstatePageState extends State<DetailsSetstatePage> {
   final TextEditingController _controller = TextEditingController();
 
   String savedText = "";

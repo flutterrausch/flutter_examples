@@ -2,15 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:textformfield_w_riverpod/backbutton_dialog.dart';
 
-final savedText = StateProvider((ref) => '');
+final savedText = StateProvider((ref) => 'init');
 
-class WillPopScopeRiverpodPage extends ConsumerWidget {
-  final _controller = TextEditingController();
-
-  // TODO init   _controller.text = ref.read(savedText.state).state
+class DetailsRiverpodPage extends ConsumerStatefulWidget {
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _DetailsRiverpodPageState createState() => _DetailsRiverpodPageState();
+  //ConsumerState<DetailsRiverpodPage> createState() => _DetailsRiverpodPageState();
+}
+
+class _DetailsRiverpodPageState extends ConsumerState {
+  final _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    //final value = ref.read(savedText);
+    //_controller.text = ref.read(savedText.state).state;  // TODO init   _controller.text = ref.read(savedText.state).state  https://stackoverflow.com/a/64218048
+  }
+
+  @override
+  // Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
         if (_controller.text == ref.read(savedText.state).state) {  // no change = no data can be lost
