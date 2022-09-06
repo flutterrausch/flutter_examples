@@ -11,5 +11,6 @@
 - Backbutton disabled
 - Backbutton -> Alert Dialog (re-usable widget)
 ### Bringing it all together for a Details Screen:
-- Backbutton -> value check using setState (custom Alert Dialog)
-- Backbutton -> value check using __Riverpod__
+- Details with setState (custom Alert)
+- Riverpod ConsumerStateful basiscs
+- Details with Riverpod
