@@ -2,7 +2,18 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:jwt_decode/jwt_decode.dart';
+
 import 'package:network_basics/SECRETS/secrets.dart';
+// Create your own API secrets.dart like so:
+// class Secrets {
+//   static const String urlPrefix = 'https://your.api.url';
+//   // auth
+//   static const String authPath = '/auth/path/';
+//   static const String usr = 'username';
+//   static const String pwd = 'password';
+//   // monitoring
+//   static const String monitoringValuesPath = '/some/other/path/';
+// }
 
 
 class HomePageManager {
