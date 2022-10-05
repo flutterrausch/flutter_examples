@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'http_page.dart';
+import 'package:network_basics/http_page.dart';
+import 'package:network_basics/dio_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,6 +35,9 @@ class MainPage extends StatelessWidget {
 
                       const SizedBox(height: 20),
                       PageButton('Http', HttpPage(), context),
+
+                      const SizedBox(height: 20),
+                      PageButton('Dio', DioPage(), context),
                     ],
                   ),
                 ),
