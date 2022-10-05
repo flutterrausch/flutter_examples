@@ -30,19 +30,19 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'TextFormField w Riverpod',
-      home: MainScreen(),
+      home: MainPage(),
     );
   }
 }
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
