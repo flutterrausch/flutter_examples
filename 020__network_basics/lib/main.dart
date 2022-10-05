@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'state_management.dart';
+import 'http_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,53 +10,53 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: HomePage(),
+        body: MainPage(),
       ),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  final stateManager = HomePageManager();
+class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 50),
-        Center(
-          child: Wrap(
-            spacing: 50,
-            alignment: WrapAlignment.center,
-            children: [
-
-              ElevatedButton(
-                onPressed: stateManager.postAuthRequest,
-                child: Text('ath AUTH'),
-              ),
-
-              ElevatedButton(
-                onPressed: stateManager.getMonitoringValues,
-                child: Text('ath MonitoringVals'),
-              ),
-
-            ],
-          ),
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Network basics'),
         ),
-        SizedBox(height: 20),
-        ValueListenableBuilder<RequestState>(
-          valueListenable: stateManager.resultNotifier,
-          builder: (context, requestState, child) {
-            if (requestState is RequestLoadInProgress) {
-              return CircularProgressIndicator();
-            } else if (requestState is RequestLoadSuccess) {
-              return Expanded(child: SingleChildScrollView(child: Text(requestState.body)));
-            } else {
-              return Container();
-            }
-          },
-        ),
-      ],
+        body: Column(
+          children: [
+            Expanded(  // make it scrollable
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+
+                      const SizedBox(height: 20),
+                      PageButton('Http', HttpPage(), context),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        )
+    );
+  }
+}
+
+class PageButton extends StatelessWidget {
+  final String pageName;
+  final Widget page;
+  final BuildContext context;
+
+  const PageButton(this.pageName, this.page, this.context);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      child: Text(pageName),
+      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => page),);},
     );
   }
 }

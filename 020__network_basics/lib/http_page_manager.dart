@@ -16,7 +16,7 @@ import 'package:network_basics/SECRETS/secrets.dart';
 // }
 
 
-class HomePageManager {
+class HttpPageManager {
   final resultNotifier = ValueNotifier<RequestState>(RequestInitial());
 
   Future<Response> _doAuth (String url, String usr, String pwd) async {
@@ -61,20 +61,20 @@ class HomePageManager {
 
     final authResponse = await _doAuth(Secrets.urlPrefix+Secrets.authPath, Secrets.usr, Secrets.pwd);
     final accessToken = _getAccessToken(authResponse);
-    debugPrint('accessToken = $accessToken');
+    //debugPrint('accessToken = $accessToken');
 
     final start = '2022-01-01';
     final end = '2022-12-31';
     final url = Uri.parse(Secrets.urlPrefix+Secrets.monitoringValuesPath+'?start='+start+'&end='+end);
-    debugPrint(Secrets.urlPrefix+Secrets.monitoringValuesPath+'?start='+start+'&end='+end);
+    //debugPrint(Secrets.urlPrefix+Secrets.monitoringValuesPath+'?start='+start+'&end='+end);
     final headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $accessToken',};
     final response = await get(url, headers: headers);  // TODO http.get
-    debugPrint('response = ' + response.statusCode.toString() + ' ' + response.body);
+    //debugPrint('response = ' + response.statusCode.toString() + ' ' + response.body);
     final jsons = jsonDecode(response.body);
-    print(jsons);  // debugPrint(jsons) throws exception..
+    //print(jsons);  // debugPrint(jsons) throws exception..
 
     _handleResponse(response, '$start  -  $end');
   }
