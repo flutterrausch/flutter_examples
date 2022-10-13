@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:network_basics/SECRETS/secrets.dart';
+import 'package:network_basics/SECRETS/secrets.dart';  // see HttpPageManager()
 
 class DioPage extends StatelessWidget {
 
@@ -9,13 +9,17 @@ class DioPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text('Dio'),),
         body: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 50),
-              Text('Dio Page'),
-              const SizedBox(height: 50),
-              AsyncWidget(),
-            ],
+          child: Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 50),
+                  Text('Dio Page'),
+                  const SizedBox(height: 50),
+                  AsyncWidget(),
+                ],
+              ),
+            ),
           ),
         )
     );
@@ -32,7 +36,7 @@ class AsyncWidget extends StatelessWidget {
           if (snapshot.hasData) {
             return Text(snapshot.data!);  // ignore that it can be null
           } else {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
         }
     );
@@ -40,20 +44,21 @@ class AsyncWidget extends StatelessWidget {
 }
 
 Future <String> asyncFetch() async {
-// var authOptions = BaseOptions(
-//   baseUrl: Secrets.urlPrefix,
-//   connectTimeout: 5000,
-//   receiveTimeout: 3000,
-// );
-//
-// try {
-// var response = await Dio().get('http://www.google.com');
-// print(response);
-// } catch (e) {
-// debugPrint(e.toString());
-// }
+  var response;
+  BaseOptions authOptions = BaseOptions(
+    baseUrl: Secrets.urlPrefix,
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
 
-  await Future.delayed(Duration(seconds: 2));
-  return 'async data';
+  try {
+    response = await Dio().get('http://www.google.com');
+    print(response);
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+
+  //await Future.delayed(Duration(seconds: 2));
+  return response.toString();
 }
 
