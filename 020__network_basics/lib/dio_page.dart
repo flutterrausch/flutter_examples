@@ -1,6 +1,38 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:network_basics/SECRETS/secrets.dart';  // see HttpPageManager()
+
+
+Future <String> dioConsoleStuff() async {
+  var response;
+  BaseOptions authOptions = BaseOptions(
+    baseUrl: Secrets.urlPrefix,
+    //connectTimeout: 5000,
+    //receiveTimeout: 3000,
+    //contentType: ContentType.json,
+    //headers: {Headers.contentLengthHeader: 10,}
+  );
+  Dio dio = Dio(authOptions);
+
+  try {
+    // response = await dio.get('/');
+    // print(response);
+
+    response = await dio.post(
+      Secrets.authPath,
+      data: {"username": Secrets.usr, "password": Secrets.pwd},
+    );
+    print(response);
+
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+
+  return response.toString();
+}
+
 
 class DioPage extends StatelessWidget {
 
@@ -14,7 +46,7 @@ class DioPage extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 50),
-                  Text('Dio Page'),
+                  const Text('Dio Page'),
                   const SizedBox(height: 50),
                   AsyncWidget(),
                 ],
@@ -31,7 +63,7 @@ class AsyncWidget extends StatelessWidget {
   @override
   Widget build(context) {
     return FutureBuilder<String>(
-        future: asyncFetch(),
+        future: dioConsoleStuff(),
         builder: (context, AsyncSnapshot<String> snapshot) {
           if (snapshot.hasData) {
             return Text(snapshot.data!);  // ignore that it can be null
@@ -42,23 +74,3 @@ class AsyncWidget extends StatelessWidget {
     );
   }
 }
-
-Future <String> asyncFetch() async {
-  var response;
-  BaseOptions authOptions = BaseOptions(
-    baseUrl: Secrets.urlPrefix,
-    connectTimeout: 5000,
-    receiveTimeout: 3000,
-  );
-
-  try {
-    response = await Dio().get('http://www.google.com');
-    print(response);
-  } catch (e) {
-    debugPrint(e.toString());
-  }
-
-  //await Future.delayed(Duration(seconds: 2));
-  return response.toString();
-}
-
