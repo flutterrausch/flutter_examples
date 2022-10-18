@@ -1,36 +1,48 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:network_basics/SECRETS/secrets.dart';  // see HttpPageManager()
+import 'package:jwt_decode/jwt_decode.dart';
 
 
 Future <String> dioConsoleStuff() async {
-  var response;
+  var response;  // Response<Map>? response;
+  String retStr;
   BaseOptions authOptions = BaseOptions(
     baseUrl: Secrets.urlPrefix,
-    //connectTimeout: 5000,
-    //receiveTimeout: 3000,
-    //contentType: ContentType.json,
-    //headers: {Headers.contentLengthHeader: 10,}
   );
   Dio dio = Dio(authOptions);
 
-  try {
-    // response = await dio.get('/');
-    // print(response);
+  dio.interceptors.add(InterceptorsWrapper(
+    onError: (error, _) {print(error.message);},  // TODO response code handling
+    //onRequest: (request, _) {print("${request.method} ${request.path}");}, // both fail
+    //onResponse: (response, _) {print(response.data);}
+  ));
 
+  // post auth request
+  try {
     response = await dio.post(
       Secrets.authPath,
-      data: {"username": Secrets.usr, "password": Secrets.pwd},
+      data: {"username": Secrets.usr, "password": Secrets.pwd},  // Dio: body -> data
     );
-    print(response);
-
+    print(response.toString());  // response.data
+    retStr = response.toString();
   } catch (e) {
-    debugPrint(e.toString());
+    debugPrint('caught: ' + e.toString());
+    retStr = e.toString();
   }
 
-  return response.toString();
+  // get access token
+  Map bodyJsons = response.data;  // no jsonDecode required, dio returns an already decoded map
+  final accessToken = bodyJsons['access'];  // jwt string
+  debugPrint('accessToken: $accessToken');
+
+  debugPrint('accessJsons = ${Jwt.parseJwt(accessToken)}');
+  debugPrint('accessExpiryDate = ${Jwt.getExpiryDate(accessToken)}');
+  debugPrint('accessExpired = ${Jwt.isExpired(accessToken)}');
+
+
+
+  return retStr;
 }
 
 
