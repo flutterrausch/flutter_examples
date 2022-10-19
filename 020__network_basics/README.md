@@ -1,3 +1,4 @@
 # Network basics
 
-- Http (AUT, getValues, Jwt_decode prepared)
+- Http (AUTH, getValues w Bearer token, Jwt_decode)
+- Dio Console - widget for plain console code (AUTH, getValues w Bearer token, Jwt_decode)

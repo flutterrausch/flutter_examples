@@ -22,20 +22,20 @@ class HttpPageManager {
   Future<Response> _doAuth (String url, String usr, String pwd) async {
     final authUrl = Uri.parse(url);
     final headers = {'Content-type': 'application/json'};
-    final body = '{"username": "$usr", "password": "$pwd"}';  // TODO validate input
+    final body = '{"username": "$usr", "password": "$pwd"}';  // NTH validate input
 
-    final response = await post(authUrl, headers: headers, body: body);  // TODO try catch, TODO if 200
+    final response = await post(authUrl, headers: headers, body: body);  // NTH try catch, if 200
 
     return response;
   }
 
   String _getAccessToken(Response response) {
-    final bodyJsons = jsonDecode(response.body);  // TODO try catch
+    final bodyJsons = jsonDecode(response.body);  // NTH try catch
     final accessToken = bodyJsons['access'];  // jwt string
 
-    // debugPrint('accessJsons = ${Jwt.parseJwt(accessToken)}');
-    // debugPrint('accessExpiryDate = ${Jwt.getExpiryDate(accessToken)}');
-    // debugPrint('accessExpired = ${Jwt.isExpired(accessToken)}');
+    debugPrint('accessJsons = ${Jwt.parseJwt(accessToken)}');
+    debugPrint('accessExpiryDate = ${Jwt.getExpiryDate(accessToken)}');
+    debugPrint('accessExpired = ${Jwt.isExpired(accessToken)}');
 
     return accessToken;
   }
@@ -71,7 +71,7 @@ class HttpPageManager {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $accessToken',};
-    final response = await get(url, headers: headers);  // TODO http.get
+    final response = await get(url, headers: headers);  // NTH http.get
     //debugPrint('response = ' + response.statusCode.toString() + ' ' + response.body);
     final jsons = jsonDecode(response.body);
     //print(jsons);  // debugPrint(jsons) throws exception..

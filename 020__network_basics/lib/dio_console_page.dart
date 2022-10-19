@@ -4,13 +4,13 @@ import 'package:network_basics/SECRETS/secrets.dart';  // see HttpPageManager()
 import 'package:jwt_decode/jwt_decode.dart';
 
 
-Future <String> dioConsoleStuff() async {
-  String retStr;
+Future <String> dioConsoleCode() async {
+  String retStr = '';
 
   var response;  // Response<Map>? response;
   BaseOptions options = BaseOptions(baseUrl: Secrets.urlPrefix,);
   var interceptors = InterceptorsWrapper(
-      onError: (error, _) {print(error.message);},  // TODO response code handling
+      onError: (error, _) {debugPrint(error.message);},  // TODO response code handling class CustomInterceptors extends Interceptor  https://pub.dev/packages/dio
   //onRequest: (request, _) {print("${request.method} ${request.path}");}, // both fail
   //onResponse: (response, _) {print(response.data);}
   );
@@ -25,10 +25,10 @@ Future <String> dioConsoleStuff() async {
       data: {"username": Secrets.usr, "password": Secrets.pwd},  // Dio: body -> data
     );
     //print(response.toString());  // response.data Map
-    retStr = response.toString();
+    retStr += '$response\n\n';
   } catch (e) {  // NTH catch DioError
-    debugPrint('caught: ' + e.toString());
-    retStr = e.toString();
+    debugPrint('caught: $e');
+    retStr += '$e\n\n';
   }
 
   // get access token, to send Bearer later
@@ -48,34 +48,31 @@ Future <String> dioConsoleStuff() async {
       Secrets.monitoringValuesPath,
       queryParameters: {'start': '2022-01-01', 'end': '2022-12-31'},
     );
-    retStr = response.toString();
+    retStr += '$response\n\n';
   } catch (e) {
-    debugPrint('caught: ' + e.toString());
-    retStr = e.toString();
+    debugPrint('caught: $e');
+    retStr += '$e\n\n';
   }
 
   return retStr;
 }
 
 
-class DioPage extends StatelessWidget {
+class DioConsolePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Dio'),),
-        body: Center(
-          child: Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(height: 50),
-                  const Text('Dio Page'),
-                  const SizedBox(height: 50),
-                  AsyncWidget(),
-                ],
-              ),
-            ),
+        appBar: AppBar(title: const Text('Dio console'),),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              const Text('See debug log, also.'),
+              const SizedBox(height: 20),
+              AsyncWidget(),
+            ],
           ),
         )
     );
@@ -87,12 +84,12 @@ class AsyncWidget extends StatelessWidget {
   @override
   Widget build(context) {
     return FutureBuilder<String>(
-        future: dioConsoleStuff(),
+        future: dioConsoleCode(),
         builder: (context, AsyncSnapshot<String> snapshot) {
           if (snapshot.hasData) {
             return Text(snapshot.data!);  // ignore that it can be null
           } else {
-            return const CircularProgressIndicator();
+            return Center(child: const CircularProgressIndicator());
           }
         }
     );
