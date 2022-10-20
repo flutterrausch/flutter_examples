@@ -65,7 +65,7 @@ class HttpPageManager {
 
     final start = '2022-01-01';
     final end = '2022-12-31';
-    final url = Uri.parse(Secrets.urlPrefix+Secrets.monitoringValuesPath+'?start='+start+'&end='+end);
+    final url = Uri.parse(Secrets.urlPrefix+Secrets.monitoringsValuesPath+'?start='+start+'&end='+end);
     //debugPrint(Secrets.urlPrefix+Secrets.monitoringValuesPath+'?start='+start+'&end='+end);
     final headers = {
       'Content-type': 'application/json',

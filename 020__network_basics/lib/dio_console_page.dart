@@ -37,15 +37,29 @@ Future <String> dioConsoleCode() async {
   //debugPrint('accessToken: $accessToken');
 
   // decode jwt - only needed for token refresh
-  debugPrint('accessJsons = ${Jwt.parseJwt(accessToken)}');
+  debugPrint('accessJsons = ${Jwt.parseJwt(accessToken)}');  // Map<String, dynamic>
   debugPrint('accessExpiryDate = ${Jwt.getExpiryDate(accessToken)}');
   debugPrint('accessExpired = ${Jwt.isExpired(accessToken)}');
 
-  // get monitoring values using accessToken
+
+  // get monitorings (categories in timeframes)
   try {
     options.headers['Authorization'] = 'Bearer $accessToken';
     response = await dio.get(
-      Secrets.monitoringValuesPath,
+      Secrets.monitoringsPath,
+    );
+    retStr += '$response\n\n';
+  } catch (e) {
+    debugPrint('caught: $e');
+    retStr += '$e\n\n';
+  }
+
+
+  // get monitorings values using accessToken
+  try {
+    options.headers['Authorization'] = 'Bearer $accessToken';
+    response = await dio.get(
+      Secrets.monitoringsValuesPath,
       queryParameters: {'start': '2022-01-01', 'end': '2022-12-31'},
     );
     retStr += '$response\n\n';
