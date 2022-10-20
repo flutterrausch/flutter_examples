@@ -7,7 +7,7 @@ import 'package:jwt_decode/jwt_decode.dart';
 Future <String> dioConsoleCode() async {
   String retStr = '';
 
-  var response;  // Response<Map>? response;
+  Response? response;  // Response<Map>? response;
   BaseOptions options = BaseOptions(baseUrl: Secrets.urlPrefix,);
   var interceptors = InterceptorsWrapper(
       onError: (error, _) {debugPrint(error.message);},  // TODO response code handling class CustomInterceptors extends Interceptor  https://pub.dev/packages/dio
@@ -32,9 +32,13 @@ Future <String> dioConsoleCode() async {
   }
 
   // get access token, to send Bearer later
-  Map bodyJsons = response.data;  // dio returns an already decoded map
-  final accessToken = bodyJsons['access'];  // jwt string
-  //debugPrint('accessToken: $accessToken');
+  final String accessToken;
+  if (response != null) {
+    final Map bodyJsons = response.data; // dio returns an already decoded map
+    accessToken = bodyJsons['access'];  // jwt string
+  } else {
+    accessToken = '';
+  }
 
   // decode jwt - only needed for token refresh
   debugPrint('accessJsons = ${Jwt.parseJwt(accessToken)}');  // Map<String, dynamic>
@@ -42,7 +46,7 @@ Future <String> dioConsoleCode() async {
   debugPrint('accessExpired = ${Jwt.isExpired(accessToken)}');
 
 
-  // get monitorings (categories in timeframes)
+  // get monitorings (what to monitor in which timeframe)
   try {
     options.headers['Authorization'] = 'Bearer $accessToken';
     response = await dio.get(
@@ -53,6 +57,18 @@ Future <String> dioConsoleCode() async {
     debugPrint('caught: $e');
     retStr += '$e\n\n';
   }
+
+  final List monsList = response!.data ?? []; // NTH correct null safety?
+  monsList.forEach((monMap) {
+    //print('$monMap');
+    //monMap.forEach((k, v) {print('${k}: ${v}');});
+
+    debugPrint(
+        'id ' + monMap["monitoring_id"].toString() +
+        '  end ' + monMap["end_date"].toString()
+    );
+
+  });
 
 
   // get monitorings values using accessToken
