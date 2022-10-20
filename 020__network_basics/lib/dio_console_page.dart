@@ -25,7 +25,7 @@ Future <String> dioConsoleCode() async {
       data: {"username": Secrets.usr, "password": Secrets.pwd},  // Dio: body -> data
     );
     //print(response.toString());  // response.data Map
-    retStr += '$response\n\n';
+    //retStr += '$response\n\n';
   } catch (e) {  // NTH catch DioError
     debugPrint('caught: $e');
     retStr += '$e\n\n';
