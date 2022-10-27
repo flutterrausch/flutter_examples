@@ -7,10 +7,11 @@ import 'package:jwt_decode/jwt_decode.dart';
 Future <String> dioConsoleCode() async {
   String retStr = '';
 
-  Response? response;  // Response<Map>? response;
+  Response? response;
   BaseOptions options = BaseOptions(baseUrl: Secrets.urlPrefix,);
   var interceptors = InterceptorsWrapper(
       onError: (error, _) {debugPrint(error.message);},  // TODO response code handling class CustomInterceptors extends Interceptor  https://pub.dev/packages/dio
+                                                         // or response.status
   //onRequest: (request, _) {print("${request.method} ${request.path}");}, // both fail
   //onResponse: (response, _) {print(response.data);}
   );
@@ -31,7 +32,7 @@ Future <String> dioConsoleCode() async {
     retStr += '$e\n\n';
   }
 
-  // get access token, to send Bearer later
+  // get accessToken, to send Bearer later with each data request
   final String accessToken;
   if (response != null) {
     final Map bodyJsons = response.data; // dio returns an already decoded map
@@ -46,7 +47,7 @@ Future <String> dioConsoleCode() async {
   debugPrint('accessExpired = ${Jwt.isExpired(accessToken)}');
 
 
-  // get monitorings (what to monitor in which timeframe)
+  // get monitorings - which values are asked from the athlet in which timeframe (to write to API)
   try {
     options.headers['Authorization'] = 'Bearer $accessToken';
     response = await dio.get(
