@@ -59,8 +59,7 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
   void toggle(String todoId) {
     state = [
       for (final todo in state)
-      // we're marking only the matching todo as completed
-        if (todo.id == todoId)
+        if (todo.id == todoId)  // we're marking only the matching todo as completed
           todo.copyWith(completed: !todo.completed)
         else
           todo,
@@ -101,25 +100,17 @@ class TodoPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //final apiFuture = ref.watch(authFutureProvider);  // instance
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Future provider page'),
       ),
-      body: Center(
-          child: SingleChildScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 500,
-                  child: TodoListView(),
-                ),
-              ],
-            ),
+      body: Column(
+        children: const [
+          Expanded(
+            child: TodoListView(),
           ),
-        ),
-      );
+        ],
+      )
+    );
   }
 }
