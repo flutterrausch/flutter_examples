@@ -6,7 +6,7 @@ const int seconds = 3;
 
 final authProvider = Provider<AuthService>((ref) =>  AuthService());
 
-final authTokenFutureProvider = FutureProvider.autoDispose<String>((ref) {
+final authTokenFutureProvider = FutureProvider.autoDispose<String>((ref) async {
   final authService = ref.watch(authProvider);
   return authService.getToken();
 });
