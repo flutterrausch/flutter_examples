@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod2/todo_asyncinit_page.dart';
-
-import 'future_provider_page.dart';
-import 'todo_page.dart';
+import 'futureprovider_page.dart';
+import 'todo_asyncinit_page.dart';
+import 'todo_notifierprovider.dart';
+import 'todo_statenotifierprovider.dart';
 
 
 const String title = 'Riverpod 2';
@@ -13,12 +13,14 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: title,
       theme: ThemeData(primarySwatch: Colors.deepPurple,),
-      home: Scaffold(
+      home: const Scaffold(
         body: MainPage(),
       ),
     );
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +45,16 @@ class MainPage extends StatelessWidget {
                     children: [
 
                       const SizedBox(height: 20),
-                      PageButton('FutureProvider', const FutureProviderPage(), context),
+                      PageButton('FutureProvider 2.0 (same)', const FutureProviderPage(), context),
 
                       const SizedBox(height: 20),
-                      PageButton('Todo', const TodoPage(), context),
+                      PageButton('Todo NotifierProvider 2.0', const TodoNotifierproviderPage(), context),
+
+                      const SizedBox(height: 40),
+                      PageButton('(Todo StateNotifierProvider)', const TodoStatenotifierproviderPage(), context),
 
                       const SizedBox(height: 20),
-                      PageButton('Todo async init', const TodoAsyncInitPage(), context),
+                      PageButton('(Todo async init (bug))', const TodoAsyncInitPage(), context),
                     ],
                   ),
                 ),

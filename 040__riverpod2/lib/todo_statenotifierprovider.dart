@@ -97,8 +97,8 @@ class TodoListView extends ConsumerWidget {
 
 // why ConsumerWidget? StatelessWidget works
 // probably because WidgetRef (unused here)
-class TodoPage extends ConsumerWidget {
-  const TodoPage({super.key});
+class TodoStatenotifierproviderPage extends ConsumerWidget {
+  const TodoStatenotifierproviderPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
