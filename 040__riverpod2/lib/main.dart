@@ -47,13 +47,13 @@ class MainPage extends StatelessWidget {
                       const SizedBox(height: 20),
                       PageButton('FutureProvider 2.0 (same)', const FutureProviderPage(), context),
 
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       PageButton('Todo NotifierProvider 2.0', const TodoNotifierproviderPage(), context),
 
                       const SizedBox(height: 40),
                       PageButton('(Todo StateNotifierProvider)', const TodoStatenotifierproviderPage(), context),
 
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       PageButton('(Todo async init (bug))', const TodoAsyncInitPage(), context),
                     ],
                   ),
