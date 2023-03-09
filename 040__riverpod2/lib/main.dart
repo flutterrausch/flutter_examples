@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod2/todo_asyncinit_page.dart';
 
 import 'future_provider_page.dart';
 import 'todo_page.dart';
@@ -45,6 +46,9 @@ class MainPage extends StatelessWidget {
 
                       const SizedBox(height: 20),
                       PageButton('Todo list', TodoPage(), context),
+
+                      const SizedBox(height: 20),
+                      PageButton('Todo list async init', TodoAsyncInitPage(), context),
                     ],
                   ),
                 ),
