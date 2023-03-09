@@ -24,7 +24,7 @@ class FutureProviderPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authTokenFuture = ref.watch(authTokenFutureProvider);  // instance
+    final AsyncValue<String> authTokenFuture = ref.watch(authTokenFutureProvider);  // instance, was always implicitely AsyncValue<String>
 
     return Scaffold(
       appBar: AppBar(
