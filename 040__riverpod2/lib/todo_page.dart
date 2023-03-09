@@ -104,7 +104,7 @@ class TodoPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Future provider page'),
+        title: const Text('Todo'),
       ),
       body: Column(
         children: const [

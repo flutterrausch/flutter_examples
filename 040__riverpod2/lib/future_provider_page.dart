@@ -28,7 +28,7 @@ class FutureProviderPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Future provider page'),
+        title: const Text('Future provider'),
       ),
       body: Center(
         child: Column(
