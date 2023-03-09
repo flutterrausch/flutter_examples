@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
-final authRepositoryProvider = Provider<AuthService>((ref) { return AuthService(); });
-
-final authFutureProvider = FutureProvider.autoDispose<String>((ref) {
-  final authRepository = ref.watch(authRepositoryProvider);
-  return authRepository.getToken();
-});
-
-
 const int seconds = 3;
+
+final authProvider = Provider<AuthService>((ref) =>  AuthService());
+
+final authTokenFutureProvider = FutureProvider.autoDispose<String>((ref) {
+  final authService = ref.watch(authProvider);
+  return authService.getToken();
+});
 
 class AuthService {
   Future<String> getToken() async {
-    await Future.delayed(Duration(seconds: seconds));
+    await Future.delayed(const Duration(seconds: seconds));
     return 'access token dummy';
   }
 }
 
 
 class FutureProviderPage extends ConsumerWidget {
+  const FutureProviderPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final apiFuture = ref.watch(authFutureProvider);  // instance
+    final authTokenFuture = ref.watch(authTokenFutureProvider);  // instance
 
     return Scaffold(
       appBar: AppBar(
@@ -34,15 +34,13 @@ class FutureProviderPage extends ConsumerWidget {
         child: Column(
           children: [
             const SizedBox(height: 50,),
-            Text('Future starts now ($seconds sec) - simulating API access'),
+            const Text('Future starts now ($seconds sec) - simulating API access'),
             const SizedBox(height: 50,),
 
-            apiFuture.when(
+            authTokenFuture.when(
               loading: () => const CircularProgressIndicator(),
+              data: (value) => Text('response = $value'),
               error: (e, stack) => Text('Error: $e'),
-              data: (value) {
-                return Text('response = $value');
-              },
             ),
           ],
         ),

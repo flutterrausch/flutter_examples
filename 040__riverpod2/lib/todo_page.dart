@@ -59,7 +59,7 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
   void toggle(String todoId) {
     state = [
       for (final todo in state)
-        if (todo.id == todoId)  // we're marking only the matching todo as completed
+        if (todo.id == todoId)  // mark only the matching todo as completed
           todo.copyWith(completed: !todo.completed)
         else
           todo,
@@ -77,18 +77,17 @@ class TodoListView extends ConsumerWidget {
   const TodoListView({Key? key}): super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {  // ref arg!
     List<Todo> todos = ref.watch(todosProvider);  // rebuild the widget when the todo list changes
 
-    // Let's render the todos in a scrollable list view
+    // Render the todos in a scrollable list view
     return ListView(
       children: [
         for (final todo in todos)
           CheckboxListTile(
-            value: todo.completed,
-            // change complete state on tap
-            onChanged: (value) => ref.read(todosProvider.notifier).toggle(todo.id),
             title: Text(todo.description),
+            value: todo.completed,
+            onChanged: (value) => ref.read(todosProvider.notifier).toggle(todo.id),  // change complete state on tap
           ),
       ],
     );
@@ -96,7 +95,10 @@ class TodoListView extends ConsumerWidget {
 }
 
 
+// why ConsumerWidget? StatelessWidget works
+// probably because WidgetRef (unused here)
 class TodoPage extends ConsumerWidget {
+  const TodoPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
