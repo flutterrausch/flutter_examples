@@ -19,8 +19,8 @@ class AuthService {
 }
 
 
-class FutureProviderPage extends ConsumerWidget {
-  const FutureProviderPage({super.key});
+class WaitFutureproviderPage extends ConsumerWidget {
+  const WaitFutureproviderPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
