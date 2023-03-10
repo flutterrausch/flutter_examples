@@ -32,13 +32,16 @@ class Todo {
   }
 }
 
+
 final exampleTodos = [
   const Todo(id: '1', description: 'Learn Flutter', completed: true),
   const Todo(id: '2', description: 'Build a todo app', completed: false),
   const Todo(id: '3', description: 'Deploy app to the app store', completed: false),
 ];
 
+
 class TodosNotifier extends Notifier<List<Todo>> {
+
   // initialize the list of todos
   @override
   List<Todo> build() {

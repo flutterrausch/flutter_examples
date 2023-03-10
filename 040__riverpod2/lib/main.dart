@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod2/counter_stateprovider_page.dart';
 import 'todo_asyncinit_page.dart';
+import 'todo_asyncnotifierprovider.dart';
 import 'todo_notifierprovider.dart';
 import 'todo_statenotifierprovider.dart';
 import 'wait_futureprovider_page.dart';
@@ -10,7 +11,7 @@ import 'wait_futureprovider_page.dart';
 const String title = 'Riverpod 2';
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -53,6 +54,9 @@ class MainPage extends StatelessWidget {
 
                       const SizedBox(height: 10),
                       PageButton('Todo NotifierProvider 2.0', const TodoNotifierproviderPage(), context),
+
+                      const SizedBox(height: 10),
+                      PageButton('Todo AsyncNotifierProvider 2.0', const TodoAsyncnotifierproviderPage(), context),
 
 
                       const SizedBox(height: 40),
