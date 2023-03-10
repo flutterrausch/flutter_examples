@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod2/counter_stateprovider_page.dart';
-import 'todo_asyncinit_page.dart';
 import 'todo_asyncnotifierprovider.dart';
 import 'todo_notifierprovider.dart';
 import 'todo_statenotifierprovider.dart';
 import 'wait_futureprovider_page.dart';
+
+//import 'todo_asyncinit_page.dart';
 
 
 const String title = 'Riverpod 2';
@@ -45,27 +46,30 @@ class MainPage extends StatelessWidget {
                 child: Center(
                   child: Column(
                     children: [
-
-                      const SizedBox(height: 20),
-                      PageButton('StateProvider 2.0 (same)', const CounterStateproviderPage(), context),
-
-                      const SizedBox(height: 10),
-                      PageButton('FutureProvider 2.0 (same)', const WaitFutureproviderPage(), context),
+                      const SizedBox(height: 40),
+                      const Text('Riverpod 2.0:'),
 
                       const SizedBox(height: 10),
-                      PageButton('Todo NotifierProvider 2.0', const TodoNotifierproviderPage(), context),
+                      PageButton('StateProvider', const CounterStateproviderPage(), context),
 
                       const SizedBox(height: 10),
-                      PageButton('Todo AsyncNotifierProvider 2.0', const TodoAsyncnotifierproviderPage(), context),
+                      PageButton('FutureProvider (same)', const WaitFutureproviderPage(), context),
+
+                      const SizedBox(height: 10),
+                      PageButton('Todo NotifierProvider', const TodoNotifierproviderPage(), context),
+
+                      const SizedBox(height: 10),
+                      PageButton('Todo AsyncNotifierProvider', const TodoAsyncnotifierproviderPage(), context),
 
 
                       const SizedBox(height: 40),
-                      const Text('Riverpod 1.0 still working:'),
+                      const Text('Riverpod 1.0 syntax is partly still working:'),
                       const SizedBox(height: 10),
-                      PageButton('(Todo StateNotifierProvider)', const TodoStatenotifierproviderPage(), context),
+                      PageButton('Todo StateNotifierProvider', const TodoStatenotifierproviderPage(), context),
 
-                      const SizedBox(height: 10),
-                      PageButton('(Todo async init (bug))', const TodoAsyncInitPage(), context),
+                      // buggy, don't show:
+                      // const SizedBox(height: 10),
+                      // PageButton('(Todo async init (bug))', const TodoAsyncInitPage(), context),
                     ],
                   ),
                 ),
@@ -82,7 +86,7 @@ class PageButton extends StatelessWidget {
   final Widget page;
   final BuildContext context;
 
-  const PageButton(this.pageName, this.page, this.context);
+  const PageButton(this.pageName, this.page, this.context, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -41,7 +41,7 @@ final exampleTodos = [
 
 
 class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
-  List<Todo> _simulateBackend = exampleTodos;
+  final List<Todo> _simulateBackend = exampleTodos;
 
   // initialize the list of todos
   @override
