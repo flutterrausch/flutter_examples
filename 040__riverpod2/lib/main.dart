@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod2/counter_stateprovider_page.dart';
-import 'todo_asyncnotifierprovider.dart';
-import 'todo_notifierprovider.dart';
-import 'todo_statenotifierprovider.dart';
+import 'todo_asyncnotifierprovider_page.dart';
+import 'todo_notifierprovider_page.dart';
+import 'todo_statenotifierprovider_page.dart';
 import 'wait_futureprovider_page.dart';
 
 //import 'todo_asyncinit_page.dart';
