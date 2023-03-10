@@ -50,22 +50,25 @@ class MainPage extends StatelessWidget {
                       const Text('Riverpod 2.0:'),
 
                       const SizedBox(height: 10),
-                      PageButton('StateProvider', const CounterStateproviderPage(), context),
+                      PageButton('StateProvider (counter)', const CounterStateproviderPage(), context),
 
                       const SizedBox(height: 10),
-                      PageButton('FutureProvider (same)', const WaitFutureproviderPage(), context),
+                      PageButton('FutureProvider (wait)', const WaitFutureproviderPage(), context),
 
                       const SizedBox(height: 10),
-                      PageButton('Todo NotifierProvider', const TodoNotifierproviderPage(), context),
+                      PageButton('NotifierProvider (todo)', const TodoNotifierproviderPage(), context),
 
                       const SizedBox(height: 10),
-                      PageButton('Todo AsyncNotifierProvider', const TodoAsyncnotifierproviderPage(), context),
+                      PageButton('AsyncNotifierProvider (todo)', const TodoAsyncnotifierproviderPage(), context),
 
 
                       const SizedBox(height: 40),
                       const Text('Riverpod 1.0 syntax is partly still working:'),
                       const SizedBox(height: 10),
-                      PageButton('Todo StateNotifierProvider', const TodoStatenotifierproviderPage(), context),
+                      PageButton('StateNotifierProvider (todo)', const TodoStatenotifierproviderPage(), context),
+
+                      const SizedBox(height: 10),
+                      PageButton('FutureProvider (identical to 2.0)', const WaitFutureproviderPage(), context),
 
                       // buggy, don't show:
                       // const SizedBox(height: 10),

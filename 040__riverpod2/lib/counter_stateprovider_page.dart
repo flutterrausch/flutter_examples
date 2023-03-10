@@ -13,7 +13,7 @@ class CounterStateproviderPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter Provider Page'),
+        title: const Text('StateProvider (counter)'),
       ),
       body: Center(
         child: Column(

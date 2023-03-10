@@ -108,7 +108,7 @@ class TodoAsyncInitPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Todo async'),
+        title: const Text('Todo async init StateNotifierProvider (bug!)'),
       ),
       body: Column(
         children: const [

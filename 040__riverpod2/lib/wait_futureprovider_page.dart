@@ -28,7 +28,7 @@ class WaitFutureproviderPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Future provider'),
+        title: const Text('FutureProvider (wait)'),
       ),
       body: Center(
         child: Column(
