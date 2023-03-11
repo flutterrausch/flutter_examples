@@ -61,7 +61,7 @@ class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
     // Add the new todo and reload the todo list from the remote repository
     state = await AsyncValue.guard(() async {
       // await BackendAdd()
-      _simulateBackend.add(const Todo(id: 'foo', description: 'added', completed: true));
+      _simulateBackend.add(todo);
       return _fetchTodo();
     });
   }
@@ -109,8 +109,7 @@ class TodoListView extends ConsumerWidget {
             CheckboxListTile(
               value: todo.completed,
               // When tapping on the todo, change its completed status
-              onChanged: (value) =>
-                  ref.read(asyncTodosProvider.notifier).toggle(todo.id),
+              onChanged: (_) => ref.read(asyncTodosProvider.notifier).toggle(todo.id),
               title: Text(todo.description),
             ),
         ],
@@ -121,6 +120,7 @@ class TodoListView extends ConsumerWidget {
   }
 }
 
+int addedCnt = 0;  // that's probably dirty :)
 
 class TodoAsyncnotifierproviderPage extends ConsumerWidget {
   const TodoAsyncnotifierproviderPage({super.key});
@@ -137,7 +137,14 @@ class TodoAsyncnotifierproviderPage extends ConsumerWidget {
             child: TodoListView(),
           ),
         ],
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          final cntId = 'added${addedCnt++}';
+          ref.read(asyncTodosProvider.notifier).addTodo(Todo(id: cntId, description: cntId, completed: addedCnt.isEven));
+          },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
