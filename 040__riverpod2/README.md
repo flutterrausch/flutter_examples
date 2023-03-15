@@ -1,6 +1,14 @@
-# Riverpod2 - more examples
+# Riverpod2 examples
 
-* FutureProvider
-* Todo list
-    * StateNotifierProvider
-    * @immutable class
+* StateProvider (counter)
+* FutureProvider (wait)
+* NotifierProvider (todo)
+* AsyncNotifierProvider (todo)
+
+old syntax:
+
+* ChangeNotifierProvider (todo)
+
+obsolete:
+
+* StateNotifierProvider (todo)
