@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod2/counter_stateprovider_page.dart';
+import 'package:riverpod2/todo_changenotifierprovider_page.dart';
 import 'todo_asyncnotifierprovider_page.dart';
 import 'todo_notifierprovider_page.dart';
 import 'todo_statenotifierprovider_page.dart';
@@ -63,12 +64,18 @@ class MainPage extends StatelessWidget {
 
 
                       const SizedBox(height: 40),
-                      const Text('Riverpod 1.0 syntax is partly still working:'),
+                      const Text('Riverpod 2.0, old syntax:'),
+
+                      const SizedBox(height: 10),
+                      PageButton('ChangeNotifierProvider (todo)', const TodoChangenotifierproviderPage(), context),
+
+
+                      const SizedBox(height: 40),
+                      const Text('Riverpod 1.0, obsolete:'),
+
                       const SizedBox(height: 10),
                       PageButton('StateNotifierProvider (todo)', const TodoStatenotifierproviderPage(), context),
 
-                      const SizedBox(height: 10),
-                      PageButton('FutureProvider (identical to 2.0)', const WaitFutureproviderPage(), context),
 
                       // buggy, don't show:
                       // const SizedBox(height: 10),
