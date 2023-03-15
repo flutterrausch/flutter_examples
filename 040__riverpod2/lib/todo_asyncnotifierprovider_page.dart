@@ -2,19 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
-// The purpose of StateNotifier is to be a simple solution to control state in an immutable manner.
-// While ChangeNotifier is simple, through its mutable nature, it can be harder to maintain as it grows larger.
-// Centralize all the logic that modifies a StateNotifier within the StateNotifier itself (outside is an anti-pattern)
-// LEARN: StateNotifier does not demand @immutable (compiles/runs)
-
-// Once an instance of the class is created, properties of that instance cannot be modified.
-// if you want to changes, you need to create a new Todo object with the updated properties.
-// the original list remains unmodified, and any further modifications are made on a new list.
-// It ensures state not accidentally modified  [well, we modify by copying..]
-// By using immutable state, it becomes a lot simpler to:
-//   compare previous and new state
-//   implement undo-redo mechanism
-//   debug the application state
+// see TodoStatenotifierproviderPage for more explanations
 @immutable
 class Todo {
   final String id;
@@ -41,7 +29,7 @@ final exampleTodos = [
 
 
 class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
-  final List<Todo> _simulateBackend = exampleTodos;
+  final List<Todo> _simulateBackend = exampleTodos;  // exampleTodos or [] empty list
 
   // initialize the list of todos
   @override
@@ -49,19 +37,17 @@ class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
     return _fetchTodo();
   }
 
-  // get whole list = all states, all state-manipulations happen at the backend
+  // get whole list = all states
+  // state-changes happen at the backend
   Future<List<Todo>> _fetchTodo() async {
     await Future.delayed(const Duration(seconds: 1)); // wait
-    return _simulateBackend;  // exampleTodos or [] empty list
+    return _simulateBackend;
   }
 
   Future<void> addTodo(Todo todo) async {
-    // Set the state to loading
-    state = const AsyncValue.loading();
-    // Add the new todo and reload the todo list from the remote repository
-    state = await AsyncValue.guard(() async {
-      // await BackendAdd()
-      _simulateBackend.add(todo);
+    state = const AsyncValue.loading();  // Set the state to loading
+    state = await AsyncValue.guard(() async {  // Add the new todo and reload the todo list from the remote repository
+      _simulateBackend.add(todo);  // await BackendAdd()
       return _fetchTodo();
     });
   }
@@ -69,8 +55,7 @@ class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
   Future<void> removeTodo(String todoId) async {
       state = const AsyncValue.loading();
       state = await AsyncValue.guard(() async {
-      // await BackendAdd()
-      _simulateBackend.removeWhere((item) => item.id == todoId);
+      _simulateBackend.removeWhere((item) => item.id == todoId);  // await BackendRemove()
       return _fetchTodo();
       });
     }
@@ -88,7 +73,7 @@ class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
   }
 }
 
-// StateNotifierProvider to let UI interact with our TodosNotifier class
+// provider to let UI interact with our notifier class
 final asyncTodosProvider = AsyncNotifierProvider<AsyncTodosNotifier, List<Todo>>(() {
   return AsyncTodosNotifier();
 });

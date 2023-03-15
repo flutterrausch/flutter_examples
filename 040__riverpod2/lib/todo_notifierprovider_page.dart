@@ -2,19 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
-// The purpose of StateNotifier is to be a simple solution to control state in an immutable manner.
-// While ChangeNotifier is simple, through its mutable nature, it can be harder to maintain as it grows larger.
-// Centralize all the logic that modifies a StateNotifier within the StateNotifier itself (outside is an anti-pattern)
-// LEARN: StateNotifier does not demand @immutable (compiles/runs)
-
-// Once an instance of the class is created, properties of that instance cannot be modified.
-// if you want to changes, you need to create a new Todo object with the updated properties.
-// the original list remains unmodified, and any further modifications are made on a new list.
-// It ensures state not accidentally modified  [well, we modify by copying..]
-// By using immutable state, it becomes a lot simpler to:
-//   compare previous and new state
-//   implement undo-redo mechanism
-//   debug the application state
+// see TodoStatenotifierproviderPage for more explanations
 @immutable
 class Todo {
   final String id;
@@ -42,15 +30,12 @@ final exampleTodos = [
 
 class TodosNotifier extends Notifier<List<Todo>> {
 
-  // initialize the list of todos
   @override
-  List<Todo> build() {
+  List<Todo> build() {  // initialize the list of todos
     return exampleTodos;  // exampleTodos or [] empty list
   }
 
   void addTodo(Todo todo) {
-    // state is a property of StateNotifier, and is immutable (StateNotifier on @immutable Todo),
-    // thus not allowed to state.add(todo) -> create new list of old items + 1 new
     state = [...state, todo];  // array spread operator - use existing state array, and then some
   }
 
@@ -74,7 +59,7 @@ class TodosNotifier extends Notifier<List<Todo>> {
   }
 }
 
-// StateNotifierProvider to let UI interact with our TodosNotifier class
+// provider to let UI interact with our notifier class
 final todosProvider = NotifierProvider<TodosNotifier, List<Todo>>(() {
   return TodosNotifier();
 });
@@ -102,13 +87,11 @@ class TodoListView extends ConsumerWidget {
 }
 
 
-// why ConsumerWidget? StatelessWidget works
-// probably because WidgetRef (unused here)
 class TodoNotifierproviderPage extends ConsumerWidget {
   const TodoNotifierproviderPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {  // ref not used, StatelessWidget would suffice
     return Scaffold(
       appBar: AppBar(
         title: const Text('NotifierProvider (todo)'),
