@@ -34,7 +34,7 @@ class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
   // initialize the list of todos
   @override
   Future<List<Todo>> build() async {
-    return _fetchTodo();
+    return _fetchTodo();  // fill state
   }
 
   // get whole list = all states
@@ -48,7 +48,7 @@ class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
     state = const AsyncValue.loading();  // Set the state to loading
     state = await AsyncValue.guard(() async {  // Add the new todo and reload the todo list from the remote repository
       _simulateBackend.add(todo);  // await BackendAdd()
-      return _fetchTodo();
+      return _fetchTodo();  // update state
     });
   }
 
@@ -56,7 +56,7 @@ class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
       state = const AsyncValue.loading();
       state = await AsyncValue.guard(() async {
       _simulateBackend.removeWhere((item) => item.id == todoId);  // await BackendRemove()
-      return _fetchTodo();
+      return _fetchTodo();  // update state
       });
     }
 
@@ -68,7 +68,7 @@ class AsyncTodosNotifier extends AsyncNotifier<List<Todo>> {
       final cmpltd = _simulateBackend[index].completed;
       //debugPrint('($index) = $cmpltd -> ${!cmpltd}');
       _simulateBackend[index] = _simulateBackend[index].copyWith(completed: !cmpltd);
-      return _fetchTodo();
+      return _fetchTodo();  // update state
     });
   }
 }
@@ -80,7 +80,7 @@ final asyncTodosProvider = AsyncNotifierProvider<AsyncTodosNotifier, List<Todo>>
 
 
 class TodoListView extends ConsumerWidget {
-  const TodoListView({Key? key}): super(key: key);
+  const TodoListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {  // ref arg!
@@ -116,8 +116,8 @@ class TodoAsyncnotifierproviderPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('AsyncNotifierProvider (todo)'),
       ),
-      body: Column(
-        children: const [
+      body: const Column(
+        children: [
           Expanded(
             child: TodoListView(),
           ),

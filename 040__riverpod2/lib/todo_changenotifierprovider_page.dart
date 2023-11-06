@@ -48,7 +48,7 @@ final todosProvider = ChangeNotifierProvider<TodosNotifier>((ref) {
 
 
 class TodoListView extends ConsumerWidget {
-  const TodoListView({Key? key}): super(key: key);
+  const TodoListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {  // ref arg!
@@ -80,8 +80,8 @@ class TodoChangenotifierproviderPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('ChangeNotifierProvider (todo)'),
       ),
-      body: Column(
-        children: const [
+      body: const Column(
+        children: [
           Expanded(
             child: TodoListView(),
           ),

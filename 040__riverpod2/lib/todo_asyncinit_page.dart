@@ -73,7 +73,7 @@ final todosAsyncProvider = FutureProvider<List<Todo>>((ref) async {
 });
 
 class TodoListView extends ConsumerWidget {
-  const TodoListView({Key? key}) : super(key: key);
+  const TodoListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -110,8 +110,8 @@ class TodoAsyncInitPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Todo async init StateNotifierProvider (bug!)'),
       ),
-      body: Column(
-        children: const [
+      body: const Column(
+        children: [
           Expanded(
             child: TodoListView(),
           ),

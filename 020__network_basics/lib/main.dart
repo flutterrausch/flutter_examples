@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:network_basics/http_page.dart';
 import 'package:network_basics/dio_console_page.dart';
 
+const String title = 'Network basics';
+
 void main() {
   runApp(MyApp());
 }
@@ -10,6 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: title,
+      theme: ThemeData(primarySwatch: Colors.deepPurple,),
       home: Scaffold(
         body: MainPage(),
       ),
@@ -23,7 +27,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Network basics'),
+          title: const Text(title),
         ),
         body: Column(
           children: [

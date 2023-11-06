@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // While ChangeNotifier is simple, through its mutable nature, it can be harder to maintain as it grows larger.
 // Centralize all the logic that modifies a StateNotifier within the StateNotifier itself (outside is an anti-pattern)
 // LEARN: StateNotifier does not demand @immutable (compiles/runs)
+// @immutable means final, or late final - that's all.
 
 // Once an instance of the class is created, properties of that instance cannot be modified.
 // if you want to changes, you need to create a new Todo object with the updated properties.
@@ -74,7 +75,7 @@ final todosProvider = StateNotifierProvider<TodosNotifier, List<Todo>>((ref) {
 
 
 class TodoListView extends ConsumerWidget {
-  const TodoListView({Key? key}): super(key: key);
+  const TodoListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {  // ref arg!
@@ -106,8 +107,8 @@ class TodoStatenotifierproviderPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('StateNotifierProvider (todo)'),
       ),
-      body: Column(
-        children: const [
+      body: const Column(
+        children: [
           Expanded(
             child: TodoListView(),
           ),

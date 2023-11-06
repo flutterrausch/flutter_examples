@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final counterProvider = StateProvider<int>((ref) => 0);  // init to 0
 
 class CounterStateproviderPage extends ConsumerWidget {
-  const CounterStateproviderPage({Key? key}) : super(key: key);
+  const CounterStateproviderPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

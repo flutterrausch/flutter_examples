@@ -66,7 +66,7 @@ final todosProvider = NotifierProvider<TodosNotifier, List<Todo>>(() {
 
 
 class TodoListView extends ConsumerWidget {
-  const TodoListView({Key? key}): super(key: key);
+  const TodoListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {  // ref arg!
@@ -96,8 +96,8 @@ class TodoNotifierproviderPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('NotifierProvider (todo)'),
       ),
-      body: Column(
-        children: const [
+      body: const Column(
+        children: [
           Expanded(
             child: TodoListView(),
           ),
