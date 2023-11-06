@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:riverpod2/counter_stateprovider_page.dart';
 import 'package:riverpod2/todo_changenotifierprovider_page.dart';
+
+import 'network_futureprovider_page.dart';
 import 'todo_asyncnotifierprovider_page.dart';
 import 'todo_notifierprovider_page.dart';
 import 'todo_statenotifierprovider_page.dart';
@@ -54,6 +58,7 @@ class MainPage extends StatelessWidget {
                       PageButton('StateProvider (counter)', const CounterStateproviderPage(), context),
 
                       const SizedBox(height: 10),
+                      PageButton('FutureProvider (network)', const NetworkFutureproviderPage(), context),
                       PageButton('FutureProvider (wait)', const WaitFutureproviderPage(), context),
 
                       const SizedBox(height: 10),
