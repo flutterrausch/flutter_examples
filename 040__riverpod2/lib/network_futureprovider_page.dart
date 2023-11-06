@@ -30,13 +30,18 @@ class Activity {  // GET endpoint
 
   // Convert a JSON object into an [Activity] instance for type-safe reading of the API response
   factory Activity.fromJson(Map<String, dynamic> json) {
-    return Activity(  // convert manually - freezed or json_serializable recommended
-      key: json['key'] as String,
-      activity: json['activity'] as String,
-      type: json['type'] as String,
-      participants: json['participants'] as int,
-      price: (json['price'] as num).toDouble(),  // as double throws exception
-    );
+    try {
+      return Activity(  // convert manually - freezed or json_serializable recommended
+        key: json['key'] as String,
+        activity: json['activity'] as String,
+        type: json['type'] as String,
+        participants: json['participants'] as int,
+        price: (json['price'] as num).toDouble(),  // as double throws exception
+      );
+    } catch (e) {
+      debugPrint('Failed to convert Activity: $e');
+      throw Exception('Failed to convert Activity: $e');
+    }
   }
 }
 
@@ -65,13 +70,13 @@ class NetworkFutureproviderPage extends ConsumerWidget {
         child: Column(
           children: [
             const SizedBox(height: 50,),
-            const Text('API access'),
-            const SizedBox(height: 50,),
-
             activity.when(
               loading: () => const CircularProgressIndicator(),
               data: (value) {
-                String msg = 'response = ${value.activity}';
+                String msg = '${value.activity}\n\n';
+                msg += '${value.type}  ${value.key}\n';
+                msg += 'participants = ${value.participants}\n';
+                msg += 'price = ${value.price}\n';
                 return Text(msg);
               },
               error: (e, stack) => Text('Error: $e'),
