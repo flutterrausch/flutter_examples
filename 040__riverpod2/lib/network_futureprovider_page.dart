@@ -55,7 +55,7 @@ final activityProvider = FutureProvider.autoDispose((ref) async {
 
 
 /// UI
-class NetworkFutureproviderPage extends ConsumerWidget {
+class NetworkFutureproviderPage extends ConsumerWidget {  // Remi renders differently for demonstration purposes (ref spreading in StatefulWidget)
   const NetworkFutureproviderPage({super.key});
 
   @override

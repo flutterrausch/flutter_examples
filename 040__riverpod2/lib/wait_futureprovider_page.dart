@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const int seconds = 3;
 
+
+// NTH 2 providers for separation of business logic? See NetworkFutureproviderPage() for 1-provider example
 final authProvider = Provider<AuthService>((ref) =>  AuthService());
 
 final authTokenFutureProvider = FutureProvider.autoDispose<String>((ref) async {
