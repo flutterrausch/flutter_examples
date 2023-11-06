@@ -29,6 +29,7 @@ class Activity {  // GET endpoint
     });
 
   // Convert a JSON object into an [Activity] instance for type-safe reading of the API response
+  // factory constructor can return an instance of a class etc  https://dart.dev/guides/language/language-tour#factory-constructor
   factory Activity.fromJson(Map<String, dynamic> json) {
     try {
       return Activity(  // convert manually - freezed or json_serializable recommended
@@ -36,7 +37,7 @@ class Activity {  // GET endpoint
         activity: json['activity'] as String,
         type: json['type'] as String,
         participants: json['participants'] as int,
-        price: (json['price'] as num).toDouble(),  // as double throws exception
+        price: (json['price'] as num).toDouble(),  // as double throws exception, since json can be int or double
       );
     } catch (e) {
       debugPrint('Failed to convert Activity: $e');

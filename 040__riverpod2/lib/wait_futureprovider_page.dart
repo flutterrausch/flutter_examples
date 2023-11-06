@@ -4,21 +4,48 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const int seconds = 3;
 
-
-// NTH 2 providers for separation of business logic? See NetworkFutureproviderPage() for 1-provider example
-final authProvider = Provider<AuthService>((ref) =>  AuthService());
-
-final authTokenFutureProvider = FutureProvider.autoDispose<String>((ref) async {
-  final authService = ref.watch(authProvider);
-  return authService.getToken();
-});
-
 class AuthService {
   Future<String> getToken() async {
     await Future.delayed(const Duration(seconds: seconds));
     return 'access token dummy';
   }
 }
+
+
+/// One provider solution:
+// This simplifies the provider setup, but it also couples the AuthService creation
+// and the token fetching logic together. This might reduce flexibility and testability
+// compared to the two-provider setup.
+
+final authTokenFutureProvider = FutureProvider.autoDispose<String>((ref) async {
+  final authService = AuthService();
+  return authService.getToken();
+});
+
+
+/// It does make sense to have two providers:
+// The authProvider is a Provider that exposes an instance of AuthService.
+// This service is responsible for fetching the authentication token, which
+// is an asynchronous operation.
+// The authTokenFutureProvider is a FutureProvider that depends on
+// authProvider. It watches the authProvider and calls the getToken method
+// from the AuthService instance. The FutureProvider will provide the future
+// returned by getToken to its consumers and handle the different states of
+// the future (loading, completed with data, or completed with an error).
+// This separation of concerns makes the code more maintainable and testable.
+// The AuthService can be tested independently of the UI logic, and the UI
+// can be tested with a mock AuthService.
+// This pattern also allows for better code reusability. If another part of
+// the application needs to fetch the authentication token, it can consume
+// the authTokenFutureProvider without having to know about the AuthService
+// or how the token is fetched.
+//
+// final authProvider = Provider<AuthService>((ref) =>  AuthService());
+
+// final authTokenFutureProvider = FutureProvider.autoDispose<String>((ref) async {
+//   final authService = ref.watch(authProvider);
+//   return authService.getToken();
+// });
 
 
 class WaitFutureproviderPage extends ConsumerWidget {
