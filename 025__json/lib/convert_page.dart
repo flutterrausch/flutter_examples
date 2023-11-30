@@ -5,27 +5,33 @@ import 'package:flutter/material.dart';
 
 const convertTitle = "dart:convert";
 
-Future<String> ConvertCode() async {
+Future<String> convertCode() async {
   String retStr = '';
 
   // deserialize json to map
-  retStr += '* deserialize json to map:\n';
+  retStr += '* deserialize / decode json to map:\n';  // / parse 
   String jsonString = '{"name":"John", "age":30, "city":"New York"}';
-  Map<String, dynamic> user = jsonDecode(jsonString);
-  retStr += 'Name: ${user['name']}\n';
-  retStr += 'Age: ${user['age']}\n';
-  retStr += 'City: ${user['city']}\n\n';
-
-  // serialize map to json
-  retStr += '* serialize map to json:\n';
-  Map<String, dynamic> user2 = {
-    'name': 'John',
-    'age': 30,
-    'city': 'New York'
-  };
-  String jsonString2 = jsonEncode(user2);
-  retStr += '$jsonString2\n\n';
+  Map<String, dynamic> user = jsonDecode(jsonString);  // var user behaves same as Map
+  retStr += '${user.runtimeType}: $user\n\n';
   
+  // serialize map to json
+  retStr += '* serialize / encode map to json:\n';
+  Map<String, dynamic> users2 = {
+    'users':
+    [
+      {
+        'name': 'John',
+        'age': 30,
+        'city': 'New York'
+      },
+      {
+        'name': 'Tom',
+        'age': 25,
+        'city': 'Chicago'
+      },
+    ]
+  };
+  retStr += '${jsonEncode(users2)}\n\n';
   return retStr;
 }
 
@@ -62,7 +68,7 @@ class AsyncWidget extends StatelessWidget {
   @override
   Widget build(context) {
     return FutureBuilder<String>(
-        future: ConvertCode(),
+        future: convertCode(),
         builder: (context, AsyncSnapshot<String> snapshot) {
           if (snapshot.hasData) {
             return Text(snapshot.data!);  // ignore that it can be null
