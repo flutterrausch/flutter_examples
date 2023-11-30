@@ -5,16 +5,18 @@ import 'package:network_basics/dio_console_page.dart';
 const String title = 'Network basics';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: title,
       theme: ThemeData(primarySwatch: Colors.deepPurple,),
-      home: Scaffold(
+      home: const Scaffold(
         body: MainPage(),
       ),
     );
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatelessWidget {
+  const MainPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class MainPage extends StatelessWidget {
                       PageButton('Http', HttpPage(), context),
 
                       const SizedBox(height: 20),
-                      PageButton('Dio console', DioConsolePage(), context),
+                      PageButton('Dio console', const DioConsolePage(), context),
                     ],
                   ),
                 ),
@@ -58,7 +62,7 @@ class PageButton extends StatelessWidget {
   final Widget page;
   final BuildContext context;
 
-  const PageButton(this.pageName, this.page, this.context);
+  const PageButton(this.pageName, this.page, this.context, {super.key});
 
   @override
   Widget build(BuildContext context) {

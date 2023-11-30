@@ -63,9 +63,9 @@ class HttpPageManager {
     final accessToken = _getAccessToken(authResponse);
     //debugPrint('accessToken = $accessToken');
 
-    final start = '2022-01-01';
-    final end = '2022-12-31';
-    final url = Uri.parse(Secrets.urlPrefix+Secrets.monitoringsValuesPath+'?start='+start+'&end='+end);
+    const start = '2022-01-01';
+    const end = '2022-12-31';
+    final url = Uri.parse('${Secrets.urlPrefix}${Secrets.monitoringsValuesPath}?start=$start&end=$end');
     //debugPrint(Secrets.urlPrefix+Secrets.monitoringValuesPath+'?start='+start+'&end='+end);
     final headers = {
       'Content-type': 'application/json',
@@ -85,9 +85,7 @@ class HttpPageManager {
       resultNotifier.value = RequestLoadFailure();
     } else {
       resultNotifier.value = RequestLoadSuccess(
-          response.statusCode.toString() + '\n\n' +
-          str + '\n\n' +
-          response.body);
+          '${response.statusCode}\n\n$str\n\n${response.body}');
     }
   }
 }

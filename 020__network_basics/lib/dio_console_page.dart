@@ -60,16 +60,15 @@ Future <String> dioConsoleCode() async {
   }
 
   final List monsList = response!.data ?? []; // NTH correct null safety?
-  monsList.forEach((monMap) {
+  for (var monMap in monsList) {
     //print('$monMap');
     //monMap.forEach((k, v) {print('${k}: ${v}');});
 
     debugPrint(
-        'id ' + monMap["monitoring_id"].toString() +
-        '  end ' + monMap["end_date"].toString()
+        'id ${monMap["monitoring_id"]}  end ${monMap["end_date"]}'
     );
 
-  });
+  }
 
 
   // get monitorings values using accessToken
@@ -90,18 +89,20 @@ Future <String> dioConsoleCode() async {
 
 
 class DioConsolePage extends StatelessWidget {
+  const DioConsolePage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('Dio console'),),
-        body: SingleChildScrollView(
+        body: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
-              const Text('See debug log, also.'),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
+              Text('See debug log, also.'),
+              SizedBox(height: 20),
               AsyncWidget(),
             ],
           ),
@@ -112,6 +113,8 @@ class DioConsolePage extends StatelessWidget {
 
 
 class AsyncWidget extends StatelessWidget {
+  const AsyncWidget({super.key});
+
   @override
   Widget build(context) {
     return FutureBuilder<String>(
@@ -120,7 +123,7 @@ class AsyncWidget extends StatelessWidget {
           if (snapshot.hasData) {
             return Text(snapshot.data!);  // ignore that it can be null
           } else {
-            return Center(child: const CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         }
     );
